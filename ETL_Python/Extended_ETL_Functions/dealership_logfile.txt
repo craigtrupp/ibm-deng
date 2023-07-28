@@ -1,0 +1,10 @@
+16:02:11-Jul-28-2023, ETL Process Started
+16:02:12-Jul-28-2023, ETL Extract Phase Initiated
+16:06:20-Jul-28-2023, ETL Process Started
+16:06:20-Jul-28-2023, ETL Extract Phase Initiated
+16:06:21-Jul-28-2023, ETL Extract Completed
+16:06:21-Jul-28-2023, ETL Transform Phase Initiated
+16:06:21-Jul-28-2023, Transform phase Ended
+16:06:21-Jul-28-2023, Load Step Initiated
+16:06:21-Jul-28-2023, Load Phase Ended
+16:06:21-Jul-28-2023, ETL Process Complete
