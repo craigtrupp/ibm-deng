@@ -20,7 +20,7 @@ Your MySQL database is now ready to use and available with username: root passwo
 
 You can access your MySQL database via:
  • The browser at: https://craigtrupp8-8080.theiadocker-2-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai
- • CommandLine: mysql --host=127.0.0.1 --port=3306 --user=root --password=Mjc3NzgtY3JhaWd0
+ • CommandLine: mysql --host=127.0.0.1 --port=3306 --user=root --password=Mjc3N
 theia@theiadocker-craigtrupp8:/home/project$ mysql --host=127.0.0.1 --port=3306 --user=root --password
 Enter password: 
 ERROR 1045 (28000): Access denied for user 'root'@'172.18.0.1' (using password: NO)
