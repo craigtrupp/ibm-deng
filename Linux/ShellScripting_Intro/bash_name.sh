@@ -1,3 +1,4 @@
+#! /bin/bash
 # This script accepts the user\'s name and prints a message greeting the user
 
 # print the prompt message on screen
