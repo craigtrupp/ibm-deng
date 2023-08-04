@@ -226,3 +226,104 @@ crontab -e
 
 - File for the entire script within directory
 
+---
+
+<br>
+
+### Historical Forecasting Accuracy
+* Now that you've created an ETL shell script to gather weather data into a report, let's create another script to measure and report the accuracy of the forecasted temperatures against the actuals.
+
+To begin, create a tab-delimited file called `historical_fc_accuracy.tsv` using the following code to insert a header of column names:
+
+```sh
+echo -e "year\tmonth\tday\tobs_tmp\tfc_temp\taccuracy\taccuracy_range" > historical_fc_accuracy.tsv
+```
+
+One key difference between this report and the previous report you generated is that the forecast temperature will now be aligned with the date the forecast is for. As a result, the date will be in the same row as the observed temperature for that date, rather than the previous row on the day that the forecast was made.
+
+Rather than scheduling your new script to run periodically, think of it as a tool you can use to generate the historical forecast accuracy on demand.
+
+<br>
+
+* Extract the forecasted and observed temperatures for today and store them in variables
+
+```sh
+# Command promport return to variable
+# grab last two rows of currnet log data, then just the top row
+yesterday_fc=$(tail -2 rx_poc.log | head -1 | cut -d " " -f5)
+```
+
+* Calculate the forecast accuracy
+```sh
+today_temp=$(tail -1 rx_poc.log | cut -d " " -f4)
+accuracy=$(($yesterday_fc-$today_temp))
+```
+
+* Assign a label to each forecast based on its accuracy
+    - This is somewhat arbitrary, we'll go with 
+
+|accuracy_range|accuracy_label|
+|-----|----|
+|+/- 1 deg|	excellent|
+|+/- 2 deg|	good|
+|+/- 3 deg|	fair|
+|+/- 4 deg|	poor|
+
+```sh
+# Using the text version of less than type conditional items
+if [ -1 -le $accuracy ] && [ $accuracy -le 1 ]
+then
+   accuracy_range=excellent
+elif [ -2 -le $accuracy ] && [ $accuracy -le 2 ]
+then
+    accuracy_range=good
+elif [ -3 -le $accuracy ] && [ $accuracy -le 3 ]
+then
+    accuracy_range=fair
+else
+    accuracy_range=poor
+fi
+echo "Forecast accuracy is $accuracy"
+```
+
+* Append a record to your historical forecast accuracy file.
+```sh
+row=$(tail -1 rx_poc.log)
+year=$( echo $row | cut -d " " -f1)
+month=$( echo $row | cut -d " " -f2)
+day=$( echo $row | cut -d " " -f3)
+# Append don't delete existing (>>)
+echo -e "$year\t$month\t$day\t$today_temp\t$yesterday_fc\t$accuracy\t$accuracy_range" >> historical_fc_accuracy.tsv
+```
+
+* Full Solution
+```sh
+#! /bin/bash
+
+yesterday_fc=$(tail -2 rx_poc.log | head -1 | cut -d " " -f5)
+today_temp=$(tail -1 rx_poc.log | cut -d " " -f4)
+accuracy=$(($yesterday_fc-$today_temp))
+
+echo "accuracy is $accuracy"
+
+if [ -1 -le $accuracy ] && [ $accuracy -le 1 ]
+then
+           accuracy_range=excellent
+elif [ -2 -le $accuracy ] && [ $accuracy -le 2 ]
+   then
+               accuracy_range=good
+       elif [ -3 -le $accuracy ] && [ $accuracy -le 3 ]
+       then
+                   accuracy_range=fair
+           else
+                       accuracy_range=poor
+fi
+
+echo "Forecast accuracy is $accuracy_range"
+
+row=$(tail -1 rx_poc.log)
+year=$( echo $row | cut -d " " -f1)
+month=$( echo $row | cut -d " " -f2)
+day=$( echo $row | cut -d " " -f3)
+echo -e "$year\t$month\t$day\t$today_temp\t$yesterday_fc\t$accuracy\t$accuracy_range" >> historical_fc_accuracy.tsv
+```
