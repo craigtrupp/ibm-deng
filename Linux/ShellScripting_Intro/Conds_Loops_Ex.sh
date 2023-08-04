@@ -1,9 +1,3 @@
-# Run sets of commands using conditional statements
-# Create true/false comparisons with logical operators
-# Use arithmetic operators to perform basic mathematical calculations
-# Use list-like arrays to store and access data
-# Execute repetitive tasks with for loops
-
 # echo '#!/bin/bash' > conditional_script.sh - run from the comand line can create a new exectubale bash script
 
 #!/bin/bash

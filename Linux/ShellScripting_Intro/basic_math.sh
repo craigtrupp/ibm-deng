@@ -1,5 +1,4 @@
-#/!/bin/bash
-#!/bin/bash
+#! /bin/bash
 
 read -p "Please enter two numbers you'd like to add and multiple separted by a space : " numbers
 for number in $numbers
