@@ -241,6 +241,8 @@ echo -e "year\tmonth\tday\tobs_tmp\tfc_temp\taccuracy\taccuracy_range" > histori
 
 One key difference between this report and the previous report you generated is that the forecast temperature will now be aligned with the date the forecast is for. As a result, the date will be in the same row as the observed temperature for that date, rather than the previous row on the day that the forecast was made.
 
+Also create an executable Bash script called `fc_accuracy.sh`.
+
 Rather than scheduling your new script to run periodically, think of it as a tool you can use to generate the historical forecast accuracy on demand.
 
 <br>
