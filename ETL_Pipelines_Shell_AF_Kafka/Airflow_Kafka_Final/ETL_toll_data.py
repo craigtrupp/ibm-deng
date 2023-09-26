@@ -24,7 +24,6 @@ dag = DAG(
     description='Apache Airflow Final Assignment',
     schedule_interval=timedelta(days=1),
 )
-
 # Tasks
 unzip_data = BashOperator(
     task_id='unzip_data',
@@ -33,31 +32,35 @@ unzip_data = BashOperator(
 )
 extract_data_from_csv = BashOperator(
     task_id='extract_data_from_csv',
-    bash_command='cut -d"," f1-4 vehicle-data.csv > csv_data.csv',
+    bash_command='cut -d"," f1-4 /home/project/airflow/dags/finalassignment/vehicle-data.csv > /home/project/airflow/dags/finalassignment/csv_data.csv',
     dag=dag,
 )
 # You don't need to specify the -d option because tab is the default delimiter. From man cut:
 extract_data_from_tsv = BashOperator(
-    taks_id='extract_data_from_tsv',
-    bash_command='cut -f5-7 tollplaza-data.tsv > tsv_data.csv',
+    task_id='extract_data_from_tsv',
+    bash_command='cut -f5-7 /home/project/airflow/dags/finalassignment/tollplaza-data.tsv > /home/project/airflow/dags/finalassignment/tsv_data.csv',
     dag=dag,
 )
 # https://linuxhint.com/bash_tr_command/ - this was helpful and we can manipulate a string to then use a space delimiter to get the last two columns
 extract_data_from_fixed_width = BashOperator(
     task_id='extract_data_from_fixed_width',
-    bash_command='cat payment-data.txt | tr -s '[:space:]' | cut -d ' ' -f11,12 > fixed_width_data.csv',
+    bash_command='cat /home/project/airflow/dags/finalassignment/payment-data.txt | tr -s "[:space:]" | cut -d ' ' -f11,12 > /home/project/airflow/dags/finalassignment/fixed_width_data.csv',
     dag=dag,
 )
-# consolidate data
+# consolidate data, set file paths
+csv_file = "/home/project/airflow/dags/finalassignment/csv_data.csv"
+tsv_file = "/home/project/airflow/dags/finalassignment/tsv_data.csv"
+fwidth_file = "/home/project/airflow/dags/finalassignment/fixed_width_data.csv"
+extract_file = "/home/project/airflow/dags/finalassignment/extracted_data.csv"
 consolidate_data = BashOperator(
     task_id='consolidate_data',
-    bash_command='paste csv_data.csv tsv_data.csv fixed_width_data.csv > extracted_data.csv',
+    bash_command=f'paste {csv_file} {tsv_file} {fwidth_file} > {extract_file}',
     dag=dag,
 )
 # transform & load
 transform_data = BashOperator(
     task_id='transform_data',
-    bash_command='tr "[a-z]" "[A-Z" < extracted_data.csv > transformed_data.csv',
+    bash_command='tr "[a-z]" "[A-Z" < {extract_file} > /home/project/airflow/dags/finalassignment/transformed_data.csv',
     dag=dag,
 )
 # task pipeline
