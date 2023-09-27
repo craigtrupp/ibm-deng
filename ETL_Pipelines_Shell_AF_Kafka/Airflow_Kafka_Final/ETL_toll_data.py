@@ -32,7 +32,7 @@ unzip_data = BashOperator(
 )
 extract_data_from_csv = BashOperator(
     task_id='extract_data_from_csv',
-    bash_command='cut -d"," f1-4 /home/project/airflow/dags/finalassignment/vehicle-data.csv > /home/project/airflow/dags/finalassignment/csv_data.csv',
+    bash_command='cut -d "," -f1-4 vehicle-data.csv /home/project/airflow/dags/finalassignment/vehicle-data.csv > /home/project/airflow/dags/finalassignment/csv_data.csv',
     dag=dag,
 )
 # You don't need to specify the -d option because tab is the default delimiter. From man cut:
