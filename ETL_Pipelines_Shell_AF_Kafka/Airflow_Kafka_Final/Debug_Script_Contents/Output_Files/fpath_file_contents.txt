@@ -1,0 +1,10 @@
+total 2300
+-rw-rw-r-- 1 default nogroup     24 Sep 28 18:16 directory_location.txt
+-rw-r--r-- 1 default nogroup   1704 Aug 22  2021 fileformats.txt
+-rw-rw-r-- 1 default nogroup      0 Sep 28 18:16 fpath_file_contents.txt
+-rw-r--r-- 1 default nogroup 680000 Aug 22  2021 payment-data.txt
+-rw-rw-r-- 1 default nogroup     29 Sep 28 18:16 sample_echo.txt
+drwxrwsr-x 2 default nogroup   4096 Sep 28 17:13 staging
+-rw-rw-r-- 1 default nogroup 528994 Sep 21  2022 tolldata.tgz
+-rw-r--r-- 1 default nogroup 602524 Aug 22  2021 tollplaza-data.tsv
+-rw-r--r-- 1 default nogroup 512524 Aug 22  2021 vehicle-data.csv

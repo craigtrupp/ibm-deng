@@ -1,0 +1,8 @@
+Do we have something cooking
+
+
+-- This was to test that the commands below having write access to a directory and where I placed the files
+
+sudo chown -R 100999 /home/project/airflow/dags/finalassignment
+
+sudo chmod -R g+rw /home/project/airflow/dags/finalassignment  
