@@ -19,17 +19,17 @@ dag_default_args = {
 }
 # Define DAG
 dag = DAG(
-    'ETL_toll_data',
+    dag_id='ETL_toll_data',
     default_args=dag_default_args,
     description='Apache Airflow Final Assignment',
     schedule_interval=timedelta(days=1),
 )
 # Tasks
-# Unzip tgz file which we placed one child level below the dag script we submitted (preface file locations with single ./)
+# Untar file and set file path for where tgz file is and with -C flag where to place untarred files - This is crucial for downstream!
 fp = '/home/project/airflow/dags/finalassignment'
 unzip_data = BashOperator(
     task_id='unzip_data',
-    bash_command=f'tar -zxf {fp}/tolldata.tgz',
+    bash_command=f'tar -zxvf {fp}/tolldata.tgz -C {fp}',
     dag=dag,
 )
 extract_data_from_csv = BashOperator(
@@ -58,7 +58,6 @@ consolidate_data = BashOperator(
     bash_command=f'paste {csv_file} {tsv_file} {fwidth_file} > {fp}/extracted_data.csv',
     dag=dag,
 )
-
 # transform & load
 transform_data = BashOperator(
     task_id='transform_data',
