@@ -1,0 +1,29 @@
+-- Task 1 - Design the dimension table MyDimDate
+
+-- Table : myDimDate --
+-- Fields --
+* dateId integer [primary key]
+* date date
+* day integer
+* month integer
+* year integer
+* weekdayInt integer
+* weekdayName varchar
+* monthInt Integer
+* monthName varchar
+* quarter integer
+
+
+-- Made in dbdiagram.io
+Table myDimDate {
+  dateId integer [primary key]
+  date date
+  day integer
+  month integer
+  year integer
+  weekdayInt integer
+  weekdayName varchar
+  monthInt Integer
+  monthName varchar
+  quarter integer
+}

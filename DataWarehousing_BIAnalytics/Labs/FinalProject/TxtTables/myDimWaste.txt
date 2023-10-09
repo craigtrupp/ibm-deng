@@ -1,0 +1,14 @@
+-- Task 2 - Design the dimension table MyDimWaste --
+
+-- Table : MyDimWaste --
+-- Fields --
+* wasteId integer [primary key]
+* wastetype varchar
+
+
+
+-- Made in dbdiagram.io
+Table MyDimWaste {
+  wastedId integer [primary key]
+  wastetype varchar
+}

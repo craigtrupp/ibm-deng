@@ -1,0 +1,15 @@
+Task 3 - Design the dimension table MyDimZone
+-- Table : MyDimZone --
+-- Fields --
+* zoneId integer [primary key]
+* collectionZone varchar
+* city varchar
+
+
+
+-- made in dbdiagram.io
+Table MyDimZone {
+  zoneId integer [primary key]
+  collectionZone varchar
+  city varchar
+}

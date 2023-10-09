@@ -1,0 +1,24 @@
+-- Task 4 - Design the fact table MyFactTrips
+-- Table : MyFactTrips --
+-- Fields --
+* tripId integer [primary key]
+* wasteCollectedTons decimal(6, 2) 
+* dateId integer
+* wasteId integer
+* zoneId integer
+
+
+
+-- dbdiagram
+Table myFactTrips {
+  tripId integer [primary key]
+  wasteCollectedTons decimal(6, 2) 
+  dateId integer
+  wasteId integer
+  zoneId integer
+}
+
+
+Before we talk about the syntax, let’s define a couple of terms. Precision is the total number of all the digits stored in a DECIMAL or NUMERIC value. 
+Scale is the number of digits after the decimal point. 
+The number 647.98574 has a precision of 8 and a scale of 5.
