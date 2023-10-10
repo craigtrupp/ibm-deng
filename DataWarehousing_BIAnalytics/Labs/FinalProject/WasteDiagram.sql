@@ -8,7 +8,8 @@ CREATE TABLE "myDimDate" (
   "weekdayName" varchar,
   "monthInt" Integer,
   "monthName" varchar,
-  "quarter" integer
+  "quarter" integer,
+  "quarterName" varchar
 );
 
 CREATE TABLE "myDimWaste" (
